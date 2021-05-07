@@ -1,0 +1,20 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+  <TemplateData>
+    <DefaultName>ServiceTemplate.cs</DefaultName>
+    <Name>ServiceTemplate</Name>
+    <Description>Automatizando a criação de estrutura de serviços</Description>
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>10</SortOrder>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <References>
+      <Reference>
+        <Assembly>System.Linq</Assembly>
+      </Reference>
+    </References>
+    <ProjectItem SubType="" TargetFileName="I$fileinputname$Service.cs" ReplaceParameters="true">IServiceTemplate.cs</ProjectItem>
+    <ProjectItem SubType="" TargetFileName="$fileinputname$Service.cs" ReplaceParameters="true">ServiceTemplate.cs</ProjectItem>
+    <ProjectItem SubType="" TargetFileName="$fileinputname$ServiceRequest.cs" ReplaceParameters="true">ServiceTemplateRequest.cs</ProjectItem>
+  </TemplateContent>
+</VSTemplate>
