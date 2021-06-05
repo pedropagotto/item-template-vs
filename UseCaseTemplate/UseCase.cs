@@ -4,42 +4,43 @@ using System.Text;
 
 namespace $rootnamespace$
 {
-     public class UseCase : UseCase<$fileinputname$UcRequest>, I$fileinputname$
-    {
-  private readonly IOutputPort<List<object>> outputPort;
-  private readonly INotifications notifications;
-
-  public UseCase(IOutputPort<List<object>> outputPort,
-                  INotifications notifications)
+  public class UseCase : I$fileinputname$
   {
+    private readonly IOutputPort<$fileinputname$Response> outputPort;
+    private readonly INotifications notifications;
+    private readonly ILogRepository logRepository;
 
-    //InitialHandler =
+    public UseCase(IOutputPort<$fileinputname$Response> outputPort,INotifications notifications, ILogRepository logRepository)
+    {
+      this.outputPort = outputPort;
+      this.notifications = notifications;
+      this.logRepository = logRepository;
+    }
+    public override void Execute($fileinputname$Request request)
+    {
+      try
+      {
+        InitialHandler.ProcessRequest(request);
+      }
+      catch (Exception ex)
+      {
+        var message = $"Occurring an error to get segments exempt list. Error: {ex.InnerException?.Message ?? ex.Message}, stacktrace: {ex.StackTrace}";
+        notifications.AddExceptionNotification(ex.Message, ex.StackTrace);
+        request.AddErrorLog(message);
+      }
+      finally
+      {
+        logRepository.Add(request.Logs);
+        BuildOutput(request);
+      }
+    }
 
-    this.outputPort = outputPort;
-    this.notifications = notifications;
-  }
-  public override void Execute($fileinputname$UcRequest request)
-  {
-    try
+    private void BuildOutput($fileinputname$Request request)
     {
-      InitialHandler.ProcessRequest(request);
-    }
-    catch (Exception ex)
-    {
-      notifications.AddExceptionNotification(ex.Message, ex.StackTrace);
-    }
-    finally
-    {
-      BuildOutput(request);
+      if (notifications.HasNotifications)
+        outputPort.Error("");
+      else
+        outputPort.Standard(request.Response);
     }
   }
-
-  private void BuildOutput($fileinputname$UcRequest request)
-  {
-    if (notifications.HasNotifications)
-      ErrorOutput<IOutputPort<List<object>>, List<object>>(outputPort, notifications);
-    else
-      SuccessOutput(outputPort, request.Output);
-  }
-}
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,10 +8,8 @@ namespace $rootnamespace$
     {
        public $safeitemname$ ()
        {
-           Response = new $safeitemname$Response();
-       }
 
-       public $safeitemname$Response Response { get; set; }
+       }
 
     }
 }

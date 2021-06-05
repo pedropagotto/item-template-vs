@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
   <TemplateData>
-    <DefaultName>UseCaseTemplate</DefaultName>
-    <Name>UseCaseTemplate</Name>
+    <DefaultName>GW UseCase Template</DefaultName>
+    <Name>GWUseCaseTemplate</Name>
     <Description>Create fast UseCase</Description>
     <ProjectType>CSharp</ProjectType>
     <SortOrder>10</SortOrder>
@@ -14,7 +14,8 @@
       </Reference>
     </References>
     <ProjectItem SubType="" TargetFileName="I$fileinputname$UseCase.cs" ReplaceParameters="true">IUseCase.cs</ProjectItem>
-    <ProjectItem SubType="" TargetFileName="UseCase.cs" ReplaceParameters="true">UseCase.cs</ProjectItem>
-    <ProjectItem SubType="" TargetFileName="$fileinputname$UcRequest.cs" ReplaceParameters="true">Request.cs</ProjectItem>
+    <ProjectItem SubType="" TargetFileName="$fileinputname$UseCase.cs" ReplaceParameters="true">UseCase.cs</ProjectItem>
+    <ProjectItem SubType="" TargetFileName="$fileinputname$Request.cs" ReplaceParameters="true">Request.cs</ProjectItem>
+    <ProjectItem SubType="" TargetFileName="$fileinputname$Response.cs" ReplaceParameters="true">Response.cs</ProjectItem>
   </TemplateContent>
 </VSTemplate>
